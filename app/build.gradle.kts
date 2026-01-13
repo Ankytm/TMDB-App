@@ -1,16 +1,21 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.app.tmdbtask"
     compileSdk = 36
-
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
     defaultConfig {
         applicationId = "com.app.tmdbtask"
         minSdk = 24
@@ -19,10 +24,17 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "TMDB_API_KEY", "\"${project.properties["TMDB_API_KEY"]}\"")
-        buildConfigField(
-            "String", "READ_ACCESS_TOKEN", "\"${project.properties["READ_ACCESS_TOKEN"]}\""
-        )
+        val localProperties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { inputStream ->
+                localProperties.load(inputStream)
+            }
+        }
+        val apiKey: String = localProperties.getProperty("TMDB_API_KEY") ?: ""
+        val readAccessToken: String = localProperties.getProperty("READ_ACCESS_TOKEN") ?: ""
+        buildConfigField("String", "TMDB_API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "READ_ACCESS_TOKEN", "\"${readAccessToken}\"")
         signingConfig = signingConfigs.getByName("debug")
     }
 
@@ -37,16 +49,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-    buildFeatures {
-        compose = true
-        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
@@ -102,6 +104,13 @@ dependencies {
     // Coroutines
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
+
+    // Hilt core
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
+    // Hilt + Compose navigation
+    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
