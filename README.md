@@ -11,7 +11,6 @@ The app shows trending and now playing movies, lets users search, bookmark, and 
 - **Bookmarking** support with a Saved Movies page
 - **Offline-first** architecture using Room
 - **Search** with debounce (results update as you type)
-- **Share & Deeplink** support (bonus)
 - Clean **MVVM + Repository** architecture
 - Coroutines + Flow for async DB/network calls
 
