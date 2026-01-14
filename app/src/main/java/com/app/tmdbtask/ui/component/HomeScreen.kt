@@ -1,5 +1,6 @@
 package com.app.tmdbtask.ui.component
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,7 +34,7 @@ import com.app.tmdbtask.ui.viewmodel.MoviesViewModel
 
 @Composable
 fun HomeScreen(
-    viewModel: MoviesViewModel, onMovieClick: (Long) -> Unit, onSavedClick: () -> Unit
+    viewModel: MoviesViewModel, onMovieClick: (Long) -> Unit, onSavedClick: () -> Unit, onSearch: () -> Unit
 ) {
     val trendingItems = viewModel.trending.collectAsLazyPagingItems()
     val nowPlayingItems = viewModel.nowPlaying.collectAsLazyPagingItems()
@@ -47,13 +48,37 @@ fun HomeScreen(
         if (trendingItems.itemCount == 0 && nowPlayingItems.itemCount == 0) {
 
             item {
-                CircularProgressIndicator(
-                    modifier = Modifier.padding(top = 100.dp),
-                    color = MaterialTheme.colorScheme.primary,
-                    strokeWidth = 4.dp
-                )
+                Box(modifier = Modifier.fillMaxWidth().height(300.dp),) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center),
+                        color = MaterialTheme.colorScheme.primary,
+                        strokeWidth = 4.dp
+                    )
+                }
             }
         } else {
+
+            item {
+                RoundedCornerShape(12.dp).let { shape ->
+                    Box(
+                        modifier = Modifier.padding(bottom = 10.dp, start = 20.dp, end = 20.dp).fillMaxWidth()
+                            .clip(shape)
+                            .border(
+                                width = 0.5.dp,
+                                color = MaterialTheme.colorScheme.outline,
+                                shape = shape
+                            ).clickable{
+                                onSearch()
+                            }
+                    ) {
+                        Text(
+                            text = "Search Movies....",
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        )
+                    }
+                }
+            }
 
             item {
                 Text(
