@@ -37,3 +37,17 @@ This project uses the TMDB API which requires an API key.
 
    ```properties
    TMDB_API_KEY=your_api_key_here
+
+# Screenshots
+
+### Home Screen
+![Home Screen](screenshots/home.jpg)
+
+### Movie Details
+![Movie Details](screenshots/details.jpg)
+
+### Search Screen
+![Search Screen](screenshots/search.jpg)
+
+### Saved Screen
+![Saved Screen](screenshots/saved.jpg)
