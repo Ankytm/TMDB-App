@@ -9,6 +9,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -22,16 +23,23 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.app.tmdbtask.ui.theme.Pink80
-import com.app.tmdbtask.ui.theme.Purple80
 
 @Composable
 fun Modifier.animatedBorder(
     backgroundColor: Color,
-    borderColors: List<Color> = listOf(Pink80, Purple80, Color.Cyan, Color.Magenta),
+    borderColors: List<Color> =
+        listOf(
+            Color.Magenta,
+            MaterialTheme.colorScheme.primary,
+            MaterialTheme.colorScheme.secondary,
+            Color.Transparent,
+            MaterialTheme.colorScheme.tertiary,
+            MaterialTheme.colorScheme.surfaceContainer,
+            Color.Magenta,
+),
     shape: Shape = RectangleShape,
     borderWidth: Dp = 1.dp,
-    animationDurationInMillis: Int = 30000,
+    animationDurationInMillis: Int = 20000,
     easing: Easing = LinearEasing
 ): Modifier {
     val brush = Brush.sweepGradient(borderColors)
