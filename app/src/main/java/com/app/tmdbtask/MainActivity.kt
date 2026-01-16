@@ -32,9 +32,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TMDBAppTheme(
-                darkTheme = true
-            ) {
+            TMDBAppTheme {
                 Box(modifier = Modifier.fillMaxSize()) {
                     val navController = rememberNavController()
                     AppNavHost(navController = navController, viewModel = viewModel)

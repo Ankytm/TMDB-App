@@ -40,13 +40,18 @@ fun AppNavHost(navController: NavHostController, viewModel: MoviesViewModel) {
         composable(Screen.Details.route) { backStackEntry ->
             val movieId = backStackEntry.arguments?.getString("movieId")?.toLongOrNull()
             movieId?.let {
-                DetailsScreen(movieId = it, viewModel = viewModel) {
+                DetailsScreen(movieId = it, viewModel = viewModel,
+                    onBackClick = {
+                        navController.popBackStack()
+                    }) {
                     navController.navigate(Screen.Saved.route)
                 }
             }
         }
         composable(Screen.Saved.route) {
-            SavedScreen(viewModel = viewModel) { movieId ->
+            SavedScreen(viewModel = viewModel, onBackClick = {
+                navController.popBackStack()
+            }) { movieId ->
                 navController.navigate(Screen.Details.createRoute(movieId))
             }
         }
