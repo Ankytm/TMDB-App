@@ -39,28 +39,32 @@ This project uses the TMDB API which requires an API key.
 
 # 📱 Screenshots
 
-<p float="center">
+<p align="center">
+  <img src="screenshots/home.png" alt="Home Dark" width="350" style="margin:5px"/>
+  <img src="screenshots/home_light.png" alt="Home Light" width="350" style="margin:5px"/>
+  <br/>
+  <b>Home Screen — Dark / Light</b>
+</p>
 
-  <img src="screenshots/home.jpg" 
-       alt="Home Screen" 
-       width="350" 
-       style="margin:10px"/>
+<p align="center">
+  <img src="screenshots/details.png" alt="Details Dark" width="350" style="margin:5px"/>
+  <img src="screenshots/details_light.png" alt="Details Light" width="350" style="margin:5px"/>
+  <br/>
+  <b>Details Screen — Dark / Light</b>
+</p>
 
-  <img src="screenshots/details.jpg" 
-       alt="Details Screen" 
-       width="350" 
-       style="margin:10px"/>
+<p align="center">
+  <img src="screenshots/search.png" alt="Search Dark" width="350" style="margin:5px"/>
+  <img src="screenshots/search_light.png" alt="Search Light" width="350" style="margin:5px"/>
+  <br/>
+  <b>Search Screen — Dark / Light</b>
+</p>
 
-  <img src="screenshots/search.jpg" 
-       alt="Search Screen" 
-       width="350" 
-       style="margin:10px"/>
-
-  <img src="screenshots/saved.jpg" 
-       alt="Saved Screen" 
-       width="350" 
-       style="margin:10px"/>
-
-</p>>
+<p align="center">
+  <img src="screenshots/saved.png" alt="Saved Dark" width="350" style="margin:5px"/>
+  <img src="screenshots/saved_light.png" alt="Saved Light" width="350" style="margin:5px"/>
+  <br/>
+  <b>Saved Screen — Dark / Light</b>
+</p>
 
 
